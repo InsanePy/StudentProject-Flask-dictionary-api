@@ -9,9 +9,12 @@ def home():
     return render_template("home.html")
 
 
+df = pd.read_csv("dictionary.csv")
+
+
 @app.route("/api/v1/<word>")
 def definition(word):
-    df = pd.read_csv("dictionary.csv")
+
     definition = df.loc[df["word"] == word]["definition"].squeeze()
     return {"Definition": definition,
             "word": word}
